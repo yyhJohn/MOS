@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive HCI prototype for an indoor AI companion with user-controlled sensing.">
+  <meta name="theme-color" content="#171b1a">
+  <title>HCI AI Companion · Interactive prototype</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css?v=84e3003f2086">
+  <link rel="stylesheet" href="./appui/scene-ui.css?v=0397b3983a39">
+  <script defer src="./room.js?v=777b081dcc30"></script>
+  <script defer src="./scene-flows.js?v=46457f1d2d43"></script>
+  <script defer src="./app.js?v=18145478b7ef"></script>
+</head>
+<body>
+  <header class="site-header">
+    <span id="brand-name" hidden></span>
+    <div class="header-right">
+      <button type="button" class="reset-button" data-action="reset"><span aria-hidden="true">↻</span> Reset demo</button>
+    </div>
+  </header>
+
+  <main>
+    <nav class="scene-nav" aria-label="Demo scenes" id="scenes">
+      <button type="button" data-action="scene" data-value="keys" aria-current="true">Find my keys</button>
+      <button type="button" data-action="scene" data-value="leaving">Leaving home</button>
+      <button type="button" data-action="scene" data-value="cooking">Cooking assistance</button>
+      <button type="button" data-action="scene" data-value="bedtime">Getting ready for bed</button>
+      <button type="button" data-action="scene" data-value="exam">Exam reminder</button>
+      <button type="button" class="free-explore" data-action="scene" data-value="free">↗ Free exploration</button>
+    </nav>
+
+    <section class="intro" aria-labelledby="scene-title">
+      <div>
+        <h1 id="scene-title">Find my keys</h1>
+        <p id="scene-description">Find the last place your keys were seen, then follow the light.</p>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="studio" aria-labelledby="room-title">
+        <header class="studio-header demo-studio-header">
+<details class="demo-options" id="demo-options" open><summary>Demo options</summary><div id="privacy-shortcuts" class="privacy-shortcuts"></div><div class="track-options"><span class="shortcut-label">Track layout</span><div class="rail-switch" id="rail-switch" role="group" aria-label="Track layout"><button type="button" data-action="rail" data-value="gantry" aria-pressed="true">XY gantry</button><button type="button" data-action="rail" data-value="track" aria-pressed="false">S-track</button></div></div><p class="locked-note" id="locked-note" hidden>Area permissions and suggestions are fixed for this demo scene.</p></details>
+          <div hidden><h2 id="room-title">Room preview</h2><p id="rail-summary"></p></div>
+          <div class="rail-controls">
+            <button type="button" class="motion-button" data-action="preview-motion"><span aria-hidden="true">▷</span> Preview motion</button>
+          </div>
+          <span class="camera-badge" id="model-camera"><i aria-hidden="true"></i><span>Camera off</span></span>
+        </header>
+        <div class="room-view" id="room-view">
+          <canvas id="room-canvas" role="img" aria-label="Isometric apartment with a kitchen counter, desk, and bed by a curtained window"></canvas>
+          <button type="button" class="resident-toggle" id="resident-toggle" aria-label="Move your character"
+            aria-pressed="false" aria-describedby="resident-hint" hidden></button>
+          <p class="resident-hint" id="resident-hint" aria-live="polite" hidden></p>
+          <div class="room-key" aria-hidden="true">
+            <span><i class="key-track"></i><span id="track-key">Y · Side rails</span></span>
+            <span id="bridge-key"><i class="key-bridge"></i> X · Crossbeam</span>
+            <span><i class="key-light"></i> Spotlight</span>
+          </div>
+          <button type="button" class="device-detail" id="device-detail" data-action="shutter"
+            aria-label="Camera shutter" aria-pressed="false" title="Open camera shutter">
+            <span class="device-body" aria-hidden="true"><i class="device-light"></i><i class="device-lens"></i><i class="shutter-plate"></i></span>
+            <span id="shutter-state">Shutter closed</span><small id="camera-explanation">(Camera is off)</small>
+          </button>
+          <p class="motion-status" id="motion-status" hidden></p>
+          <span class="room-object-name" id="room-object-name" role="status" hidden></span>
+          <p class="room-caption" id="room-caption" hidden></p>
+        </div>
+        <div class="playback-mode">Step-by-Step</div>
+        <div class="narrative-box" id="narrative-box" aria-live="polite"></div>
+        <div class="studio-controls" id="scene-controls"></div>
+      </section>
+
+      <div class="app-column"><section class="companion" aria-labelledby="companion-title">
+        <header class="companion-header">
+          <span class="companion-mark" aria-hidden="true"><i></i></span>
+          <div><h2 id="companion-title">Robin</h2><p id="companion-status">Camera off</p></div>
+        </header>
+        <nav class="phone-nav" aria-label="Companion panels" id="phone-nav">
+          <button type="button" data-action="panel" data-value="chat" aria-current="true">Chat</button>
+          <button type="button" data-action="panel" data-value="reminders">Memory <span id="reminder-count" hidden></span></button>
+          <button type="button" data-action="panel" data-value="settings" aria-label="Settings" title="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-3M14 20H3M14 2v4M8 10v4M18 18v4"/></svg></button>
+        </nav>
+        <div class="phone-content" id="phone-content"></div>
+        <div class="settings-sheet" id="settings-sheet" aria-hidden="true" inert>
+          <button class="sheet-shade" type="button" data-action="close-settings" aria-label="Close settings"></button>
+          <section class="settings-surface" role="dialog" aria-modal="true" aria-label="Settings">
+            <div class="sheet-handle"></div><div class="sheet-heading"><b>Settings</b><button type="button" data-action="close-settings" aria-label="Close settings">×</button></div>
+            <div id="settings-body"></div>
+          </section>
+        </div>
+      </section></div>
+    </div>
+    <p class="sr-only" id="announcement" aria-live="polite"></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,7 @@
+OPENAI_MODEL=gpt-6.1-terra
+
+# Optional Home Assistant connection
+# MOS_HA_URL=https://ha.example.com
+# MOS_HA_TOKEN=
+# MOS_HA_CURTAIN=cover.bedroom_curtain
+# MOS_HA_USER=

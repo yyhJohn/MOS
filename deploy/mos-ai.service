@@ -1,0 +1,29 @@
+[Unit]
+Description=MOS OpenAI chat backend
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=120
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=mos-ai
+Group=www-data
+DynamicUser=yes
+RuntimeDirectory=mos-ai
+RuntimeDirectoryMode=0750
+UMask=0077
+EnvironmentFile=/etc/mos-ai/model.conf
+LoadCredential=openai-api-key:/etc/mos-ai/openai.key
+ExecStart=/usr/bin/python3 -B /opt/mos-ai/server.py
+Restart=on-failure
+RestartSec=3
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+NoNewPrivileges=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+TasksMax=16
+
+[Install]
+WantedBy=multi-user.target

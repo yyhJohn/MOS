@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171b1a">
+  <title>HCI AI Companion · Storyboards</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./storyboards.css">
+  <script defer src="./room.js"></script>
+  <script defer src="./storyboards.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i></span>HCI AI Companion</div>
+    <a class="reset-button story-return" href="./index.html">Interactive demo</a>
+  </header>
+  <main>
+    <nav class="scene-nav" id="stories" aria-label="Storyboards">
+      <button type="button" data-story="keys" aria-current="true">Finding lost keys</button>
+      <button type="button" data-story="cooking">Cooking assistance</button>
+      <button type="button" data-story="bedtime">Privacy &amp; bedtime</button>
+      <button type="button" data-story="exam">Smart exam reminder</button>
+    </nav>
+    <section class="intro" aria-labelledby="story-title">
+      <div><h1 id="story-title">Finding lost keys</h1><p id="story-description">A remembered location becomes a physical cue.</p></div>
+      <span class="sim-label"><i aria-hidden="true"></i> Simulated storyboard</span>
+    </section>
+    <div class="workspace story-workspace">
+      <section class="studio" aria-labelledby="story-title">
+        <div id="room-content">
+          <header class="studio-header">
+            <div class="studio-heading"><h2 id="room-title">Apartment model</h2><p>Ceiling-mounted concept</p></div>
+            <div class="rail-switch" id="story-rail" role="group" aria-label="Rail design">
+              <button type="button" data-rail-choice="gantry" aria-pressed="true">XY gantry</button>
+              <button type="button" data-rail-choice="track" aria-pressed="false">S-track</button>
+            </div>
+            <span class="camera-badge is-active" id="story-camera"><i aria-hidden="true"></i><span>Camera on</span></span>
+          </header>
+          <div class="room-view" id="room-view">
+            <canvas id="room-canvas" role="img" aria-label="Apartment storyboard"></canvas>
+            <div class="room-key" aria-hidden="true">
+              <span><i class="key-track"></i><span id="story-track-key">Y · Side rails</span></span>
+              <span id="story-bridge-key"><i class="key-bridge"></i> X · Crossbeam</span>
+              <span id="story-clock" class="story-clock" hidden></span>
+            </div>
+            <div class="device-detail curtain-detail is-active" id="story-shutter" aria-hidden="true">
+              <div class="device-body"><i class="device-light"></i><i class="device-lens"></i><i class="curtain-plate"></i></div>
+              <span>Privacy curtain up</span>
+            </div>
+            <p class="motion-status" id="motion-status" hidden></p>
+          </div>
+        </div>
+        <div class="exam-stage" id="exam-stage" hidden></div>
+        <div class="studio-controls story-controls" id="story-controls">
+          <div class="story-transport">
+            <button type="button" class="stage-button" id="previous-shot">Previous</button>
+            <button type="button" class="stage-button" id="play-story">Play</button>
+            <button type="button" class="stage-button primary" id="next-shot">Next shot</button>
+          </div>
+          <div class="shot-steps" id="shot-steps" role="group" aria-label="Shots"></div>
+        </div>
+      </section>
+      <section class="companion story-card" id="shot-card" aria-labelledby="shot-title">
+        <header class="companion-header">
+          <span class="companion-mark" aria-hidden="true"><i></i></span>
+          <div><h2>Storyboard</h2><p id="shot-number">Shot 1 of 6</p></div>
+        </header>
+        <div id="shot-content" class="phone-content" aria-live="polite">
+          <h3 id="shot-title">Ready to leave</h3>
+          <p id="shot-description" class="panel-lead"></p>
+          <div id="shot-lines"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name mos.example.com;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/mos-acme;
+        default_type text/plain;
+        try_files $uri =404;
+    }
+    location / { return 308 https://mos.example.com$request_uri; }
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name mos.example.com;
+
+    ssl_certificate /etc/letsencrypt/live/mos.example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mos.example.com/privkey.pem;
+
+    root /var/www/hci-demo;
+    include /etc/nginx/snippets/mos-ai-direct.conf;
+    index index.html;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

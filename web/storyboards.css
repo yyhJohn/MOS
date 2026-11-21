@@ -1,0 +1,36 @@
+.story-return{text-decoration:none}
+.story-return:focus-visible{outline:3px solid #81bcec;outline-offset:3px}
+.story-workspace .studio-header{flex-wrap:nowrap}
+.story-controls{display:flex;justify-content:space-between;min-height:67px;gap:10px}
+.story-transport,.shot-steps{display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+.story-controls button:disabled{cursor:default;opacity:.42}
+.shot-steps button{width:32px;height:32px;border-radius:7px;border:1px solid #576a59;background:#29382e;color:#dfe9dc;font-weight:700}
+.shot-steps button[aria-current="step"]{background:#dff39c;color:#243321;border-color:#dff39c}
+.shot-steps button:hover:not(:disabled){border-color:#9fbb8b}
+.story-card .phone-content{padding:20px;min-height:270px}
+.story-card .phone-content h3{font-size:clamp(1.4rem,2.25vw,2rem);margin-bottom:12px}
+.story-card .panel-lead{font-size:1rem;margin-bottom:18px}
+.story-dialogue{display:grid;gap:9px}
+.story-dialogue p{width:fit-content;max-width:100%}
+.story-dialogue small{display:block;color:#455745;font-weight:700;margin-bottom:4px}
+.story-dialogue .assistant{background:#e7eddf;border-color:#cfdac9}
+.curtain-plate{position:absolute;width:21px;height:22px;left:23px;top:1px;border:1px solid #748675;border-radius:3px;background:repeating-linear-gradient(0deg,#7b8a74 0 2px,#adbaa0 2px 4px);translate:0 -23px;transition:translate .58s ease-in-out}
+.curtain-detail:not(.is-active) .curtain-plate{translate:0 0}
+.story-clock{color:#e0eccf;background:#27362e;border:1px solid #607762;border-radius:5px;padding:3px 6px;font-weight:700}
+.exam-stage{display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 10%,#405b46,#22352b 60%,#1d2c23);min-height:440px}
+.exam-phone{color-scheme:light;width:min(100%,330px);border:6px solid #17231c;border-radius:24px;background:#f4f6ec;color:#263b2c;box-shadow:0 15px 42px #17231982;overflow:hidden}
+.exam-phone header{padding:15px 17px 11px;border-bottom:1px solid #d6dfcb;background:#e9eee0;font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.exam-phone header small{font-weight:400}
+.exam-body{display:grid;gap:9px;padding:15px 17px 18px}
+.exam-entry{border:1px solid #dce4d6;border-radius:9px;padding:9px 11px;background:#f9fbf4}
+.exam-entry p{color:#536750;font-size:.875rem;margin-top:4px}
+.exam-entry.skipped{background:#e1ead9;border-color:#bccdb5}
+.exam-entry.share{background:#edf1df;border-color:#cad7ba}
+@media(max-width:480px){
+  .story-workspace .studio-header{flex-wrap:wrap}
+  .story-card .phone-content{min-height:0}
+  .story-controls .shot-steps{justify-content:flex-start}
+  .exam-stage{min-height:0;padding:17px}
+  .story-workspace .motion-status{top:67px}
+}
+@media(prefers-reduced-motion:reduce){.curtain-plate{transition:none}}
